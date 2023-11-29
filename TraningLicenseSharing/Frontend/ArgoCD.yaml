@@ -3,29 +3,26 @@ kind: Ingress
 metadata:
   annotations:
     appgw.ingress.kubernetes.io/health-probe-status-codes: 200-499
+    # nginx.ingress.kubernetes.io/whitelist-source-range: 193.33.93.43/32
     appgw.ingress.kubernetes.io/ssl-redirect: 'true'
     cert-manager.io/acme-challenge-type: http01
     cert-manager.io/cluster-issuer: cert-manager-global
-    external-dns.alpha.kubernetes.io/hostname: tls-fe.app.mddinternship.com
+    external-dns.alpha.kubernetes.io/hostname: tls-be.app.mddinternship.com
   labels:
-    app: tls-fe
-  name: tls-fe-ingres
+    app: tls-be
+  name: tls-be-ingres
 spec:
   rules:
-    - host: tls-fe.app.mddinternship.com
+    - host: tls-be.app.mddinternship.com
       http:
         paths:
-          - frontend:
+          - backend:
               service:
-                name: tls-fe-service
+                name: tls-be-service
                 port:
                   number: 5000
             path: /
             pathType: Prefix
-  tls:
-    - hosts:
-        - tls-fe.app.mddinternship.com
-      secretName: tls-fe-db-tls
 
 ---
 apiVersion: v1
