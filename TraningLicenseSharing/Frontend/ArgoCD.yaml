@@ -19,6 +19,11 @@ spec:
                   number: 5000
             path: /
             pathType: Prefix
+  tls:
+    - hosts:
+        - tls-fe.app.mddinternship.com
+      secretName: tls-fe-db-tls
+
 ---
 apiVersion: v1
 kind: Service
@@ -65,3 +70,4 @@ spec:
             - containerPort: 4173
       imagePullSecrets:
         - name: nexus-docker
+  
