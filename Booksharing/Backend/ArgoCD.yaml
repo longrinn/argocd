@@ -26,6 +26,10 @@ spec:
     - hosts:
         - booksharing-be.app.mddinternship.com
       secretName: booksharing-backend-db-tls
+  template:
+    spec:
+      containers:
+        - image: nexus.tool.mddinternship.com/repository/booksharing_be:1.0.0
 ---
 apiVersion: v1
 kind: Service
