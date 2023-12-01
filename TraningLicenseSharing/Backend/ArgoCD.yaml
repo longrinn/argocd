@@ -67,7 +67,7 @@ spec:
     spec:
       containers:
         - name: tlsbe
-          image: nexus.tool.mddinternship.com/repository/tls-backend:04186d27b5372c71e27689262b0cc26781919d4a
+          image: nexus.tool.mddinternship.com/repository/tls-backend:a77e5a47a09ea606d47eb3ae323a44bf73017d05
           imagePullPolicy: Always
           env:
             - name: SPRING_DATASOURCE_URL
@@ -97,16 +97,16 @@ spec:
   template:
     spec:
       containers:
-      - name: database-migration-container
-        image: your-database-migration-image:tag
-        imagePullPolicy: Always
-        env:
-          - name: FLYWAY_URL
-            value: "jdbc:postgresql://postgres-postgresql.postgresql.svc:5432/TrainingLicenseSharing"
-          - name: FLYWAY_USER
-            value: "tls_backend"
-          - name: FLYWAY_PASSWORD
-            value: "admin"
-        command: ["sh", "-c", "./database/db-env.sh"]
+        - name: database-migration-container
+          image: nexus.tool.mddinternship.com/repository/tls-backend:a77e5a47a09ea606d47eb3ae323a44bf73017d05
+          imagePullPolicy: Always
+          env:
+            - name: FLYWAY_URL
+              value: "jdbc:postgresql://postgres-postgresql.postgresql.svc:5432/TrainingLicenseSharing"
+            - name: FLYWAY_USER
+              value: "tls_backend"
+            - name: FLYWAY_PASSWORD
+              value: "admin"
+          command: ["sh", "-c", "./database/db-env.sh"]
       restartPolicy: Never
   backoffLimit: 4
