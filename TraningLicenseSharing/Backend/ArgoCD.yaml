@@ -66,15 +66,15 @@ spec:
         app: tls-be
     spec:
       containers:
-        - name: bsbackend
-          image: :04186d27b5372c71e27689262b0cc26781919d4a
+        - name: tls_backend
+          image: nexus.tool.mddinternship.com/repository/tls-backend:04186d27b5372c71e27689262b0cc26781919d4a
           imagePullPolicy: Always
           env:
-            - name: PSQL_URL
+            - name: SPRING_DATASOURCE_URL
               value: "jdbc:postgresql://postgres-postgresql.postgresql.svc:5432/TrainingLicenseSharing"
-            - name: PSQL_USER
+            - name: SPRING_DATASOURCE_USERNAME
               value: "tls_backend"
-            - name: PSQL_PASS
+            - name: SPRING_DATASOURCE_PASSWORD
               value: "admin"
           ports:
             - containerPort: 8080
