@@ -67,7 +67,7 @@ spec:
     spec:
       containers:
         - name: bsbackend
-          image: :CI_COMMIT_SHA
+          image: :04186d27b5372c71e27689262b0cc26781919d4a
           imagePullPolicy: Always
           env:
             - name: PSQL_URL
