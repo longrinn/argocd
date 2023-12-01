@@ -67,7 +67,7 @@ spec:
     spec:
       containers:
         - name: bsbackend
-          image: nexus.tool.mddinternship.com/repository/tls-backend:main
+          image: :CI_COMMIT_SHA
           imagePullPolicy: Always
           env:
             - name: PSQL_URL
@@ -78,12 +78,11 @@ spec:
               value: "admin"
           ports:
             - containerPort: 8080
-          # readinessProbe:
-          #   httpGet:
-          #     path: /   # Adjust the path based on your application
-          #     port: 80
-          #   initialDelaySeconds: 5
-          #   periodSeconds: 5
+              # readinessProbe:
+              #   httpGet:
+              #     path: /   # Adjust the path based on your application
+              #     port: 80
+              #   initialDelaySeconds: 5
+              #   periodSeconds: 5
       imagePullSecrets:
         - name: nexus-docker
-
