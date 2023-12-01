@@ -86,3 +86,27 @@ spec:
               #   periodSeconds: 5
       imagePullSecrets:
         - name: nexus-docker
+  strategy:
+  type: RollingUpdate
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: database-migration-job
+spec:
+  template:
+    spec:
+      containers:
+      - name: database-migration-container
+        image: your-database-migration-image:tag
+        imagePullPolicy: Always
+        env:
+          - name: FLYWAY_URL
+            value: "jdbc:postgresql://postgres-postgresql.postgresql.svc:5432/TrainingLicenseSharing"
+          - name: FLYWAY_USER
+            value: "tls_backend"
+          - name: FLYWAY_PASSWORD
+            value: "admin"
+        command: ["sh", "-c", "./database/db-env.sh"]
+      restartPolicy: Never
+  backoffLimit: 4
