@@ -92,6 +92,16 @@ spec:
   strategy:
   type: RollingUpdate
 ---
+apiVersion: v1
+data:
+  SPRING_DATASOURCE_PASSWORD: YWRtaW4=
+  SPRING_DATASOURCE_URL: amRiYzpwb3N0Z3Jlc3FsOi8vcG9zdGdyZXMtcG9zdGdyZXNxbC5wb3N0Z3Jlc3FsLnN2Yzo1NDMyL1RyYWluaW5nTGljZW5zZVNoYXJpbmc=
+  SPRING_DATASOURCE_USERNAME: dGxzX2JhY2tlbmQ=
+kind: Secret
+metadata:
+  name: tls-db-credentials
+type: Opaque
+---
 apiVersion: batch/v1
 kind: Job
 metadata:
@@ -106,7 +116,7 @@ spec:
           imagePullPolicy: Always
           envFrom:
             - secretRef:
-                name: tls-mirgation-credentials
+                name: tls-migration-credentials
           # env:
           #   - name: FLYWAY_URL
           #     value: "jdbc:postgresql://postgres-postgresql.postgresql.svc:5432/TrainingLicenseSharing"
@@ -117,3 +127,13 @@ spec:
           command: ["sh", "-c", "./database/db-env.sh"]
       restartPolicy: Never
   backoffLimit: 4
+---
+apiVersion: v1
+data:
+  FLYWAY_PASSWORD: YWRtaW4=
+  FLYWAY_URL: amRiYzpwb3N0Z3Jlc3FsOi8vcG9zdGdyZXMtcG9zdGdyZXNxbC5wb3N0Z3Jlc3FsLnN2Yzo1NDMyL1RyYWluaW5nTGljZW5zZVNoYXJpbmc=
+  FLYWAY_USER: dGxzX2JhY2tlbmQ=
+kind: Secret
+metadata:
+  name: tls-migration-credentials
+type: Opaque
