@@ -90,7 +90,7 @@ spec:
       imagePullSecrets:
         - name: nexus-docker
   strategy:
-  type: RollingUpdate
+    type: RollingUpdate
 ---
 apiVersion: v1
 data:
