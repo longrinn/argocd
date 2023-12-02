@@ -69,13 +69,16 @@ spec:
         - name: tlsbe
           image: nexus.tool.mddinternship.com/repository/tls-backend:a77e5a47a09ea606d47eb3ae323a44bf73017d05
           imagePullPolicy: Always
-          env:
-            - name: SPRING_DATASOURCE_URL
-              value: "jdbc:postgresql://postgres-postgresql.postgresql.svc:5432/TrainingLicenseSharing"
-            - name: SPRING_DATASOURCE_USERNAME
-              value: "tls_backend"
-            - name: SPRING_DATASOURCE_PASSWORD
-              value: "admin"
+          envFrom:
+            - secretRef:
+                name: tls-db-credentials
+          # env:
+          #   - name: SPRING_DATASOURCE_URL
+          #     value: "jdbc:postgresql://postgres-postgresql.postgresql.svc:5432/TrainingLicenseSharing"
+          #   - name: SPRING_DATASOURCE_USERNAME
+          #     value: "tls_backend"
+          #   - name: SPRING_DATASOURCE_PASSWORD
+          #     value: "admin"
           ports:
             - containerPort: 8080
               # readinessProbe:
@@ -94,19 +97,23 @@ kind: Job
 metadata:
   name: database-migration-job
 spec:
+  ttlSecondsAfterFinished: 100
   template:
     spec:
       containers:
         - name: database-migration-container
           image: nexus.tool.mddinternship.com/repository/tls-backend:a77e5a47a09ea606d47eb3ae323a44bf73017d05
           imagePullPolicy: Always
-          env:
-            - name: FLYWAY_URL
-              value: "jdbc:postgresql://postgres-postgresql.postgresql.svc:5432/TrainingLicenseSharing"
-            - name: FLYWAY_USER
-              value: "tls_backend"
-            - name: FLYWAY_PASSWORD
-              value: "admin"
+          envFrom:
+            - secretRef:
+                name: tls-mirgation-credentials
+          # env:
+          #   - name: FLYWAY_URL
+          #     value: "jdbc:postgresql://postgres-postgresql.postgresql.svc:5432/TrainingLicenseSharing"
+          #   - name: FLYWAY_USER
+          #     value: "tls_backend"
+          #   - name: FLYWAY_PASSWORD
+          #     value: "admin"
           command: ["sh", "-c", "./database/db-env.sh"]
       restartPolicy: Never
   backoffLimit: 4
