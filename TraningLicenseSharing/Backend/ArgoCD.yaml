@@ -67,7 +67,7 @@ spec:
     spec:
       containers:
         - name: tlsbe
-          image: nexus.tool.mddinternship.com/repository/tls-backend:a77e5a47a09ea606d47eb3ae323a44bf73017d05
+          image: nexus.tool.mddinternship.com/repository/tls-backend:67c5183994f35dd471e401bf60efeb587b9dd75e
           imagePullPolicy: Always
           envFrom:
             - secretRef:
@@ -101,6 +101,11 @@ kind: Secret
 metadata:
   name: tls-db-credentials
 type: Opaque
+spec:
+  template:
+    spec:
+      containers:
+        - image: nexus.tool.mddinternship.com/repository/tls-backend:67c5183994f35dd471e401bf60efeb587b9dd75e
 ---
 apiVersion: batch/v1
 kind: Job
