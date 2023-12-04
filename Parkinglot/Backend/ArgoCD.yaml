@@ -67,8 +67,8 @@ spec:
     spec:
       containers:
         - name: parking-lot
-          image: nexus.tool.mddinternship.com/repository/parking-lot:main
-          imagePullPolicy: Always 
+          image: nexus.tool.mddinternship.com/repository/parking-lot:d46c250ade3bb9e4966c28341337fd41176f515b
+          imagePullPolicy: Always
           ports:
             - containerPort: 8080
       imagePullSecrets:
