@@ -49,6 +49,16 @@ metadata:
   name: nexus-docker
 type: kubernetes.io/dockerconfigjson
 ---
+apiVersion: v1
+data:
+  FLYWAY_PASSWORD: YUtkc2pmJiNmYUAjaEc=
+  FLYWAY_URL: amRiYzpwb3N0Z3Jlc3FsOi8vcG9zdGdyZXMtcG9zdGdyZXNxbC5wb3N0Z3Jlc3FsLnN2Yzo1NDMyL1BhcmtpbmdMb3Q=
+  FLYWAY_USER: cGFya2luZ2xvdA==
+kind: Secret
+metadata:
+  name: parking-lot-secret
+type: Opaque
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -69,6 +79,9 @@ spec:
         - name: parking-lot
           image: nexus.tool.mddinternship.com/repository/parking-lot:d46c250ade3bb9e4966c28341337fd41176f515b
           imagePullPolicy: Always
+          envFrom:
+            - secretRef:
+                name: tls-migration-credentials 
           ports:
             - containerPort: 8080
       imagePullSecrets:
