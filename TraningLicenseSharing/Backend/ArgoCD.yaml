@@ -67,7 +67,7 @@ spec:
     spec:
       containers:
         - name: tlsbe
-          image: nexus.tool.mddinternship.com/repository/parking-lot:4c0c7ef09a0b3b43b549921d200ea15507ffc733
+          image: nexus.tool.mddinternship.com/repository/tls-backend:4b7adf9126902b5b6d382bb69870100dde0b3f3a
           imagePullPolicy: Always
           envFrom:
             - secretRef:
@@ -117,7 +117,7 @@ spec:
     spec:
       containers:
         - name: database-migration-container
-          image: nexus.tool.mddinternship.com/repository/tls-backend:8e706d7e1bfa33d279cd154ec751c238ba01da8f
+          image: nexus.tool.mddinternship.com/repository/tls-backend:4b7adf9126902b5b6d382bb69870100dde0b3f3a
           imagePullPolicy: Always
           envFrom:
             - secretRef:
