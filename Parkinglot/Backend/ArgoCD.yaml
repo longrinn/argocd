@@ -86,7 +86,7 @@ spec:
           imagePullPolicy: Always
           envFrom:
             - secretRef:
-                name: tls-migration-credentials
+                name: parking-lot-secret
           ports:
             - containerPort: 8080
       imagePullSecrets:
