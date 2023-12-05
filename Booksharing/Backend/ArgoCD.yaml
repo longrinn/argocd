@@ -78,7 +78,7 @@ spec:
       volumes:
         - name: booksharing-data
           persistentVolumeClaim:
-            claimName: pvs-bs
+            claimName: back
 
 ---
 apiVersion: v1
@@ -89,7 +89,7 @@ metadata:
     volume.kubernetes.io/storage-provisioner: ebs.csi.aws.com
   labels:
     app: back
-  name: pvc-bs
+  name: back
 spec:
   accessModes:
     - ReadWriteOnce
