@@ -20,7 +20,7 @@ spec:
               service:
                 name: tls-fe-service
                 port:
-                  number: 5000
+                  number: 8080
             path: /
             pathType: Prefix
   tls:
@@ -38,8 +38,8 @@ spec:
     app: tls-fe
   ports:
     - protocol: TCP
-      port: 5000
-      targetPort: 4173
+      port: 8080
+      targetPort: 80
 ---
 apiVersion: v1
 data:
@@ -70,6 +70,6 @@ spec:
           image: nexus.tool.mddinternship.com/repository/frontend:0.0.1
           imagePullPolicy: Always
           ports:
-            - containerPort: 4173
+            - containerPort: 80
       imagePullSecrets:
         - name: nexus-docker
