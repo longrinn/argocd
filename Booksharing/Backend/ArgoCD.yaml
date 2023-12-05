@@ -69,5 +69,27 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 80
+          volumeMounts:
+            - mountPath: /app/StaticFiles/BookCovers
+              name: booksharing-data
+              subPath: null
       imagePullSecrets:
         - name: nexus-docker
+      volumes:
+        - name: booksharing-data
+          persistentVolumeClaim:
+            claimName: pvs-bs
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  labels:
+    app:back
+  name: pvc-bs
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi 
