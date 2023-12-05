@@ -70,7 +70,7 @@ spec:
           ports:
             - containerPort: 80
           volumeMounts:
-            - mountPath: /app/StaticFiles/BookCovers
+            - mountPath: app/StaticFiles/
               name: booksharing-data
               subPath: null
       imagePullSecrets:
