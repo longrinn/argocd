@@ -69,6 +69,9 @@ spec:
         - name: bsfrontend
           image: nexus.tool.mddinternship.com/repository/frontend:0.0.3
           imagePullPolicy: Always
+          env:
+          - name: API_BASE_URL
+            value: "http://postgres-postgresql.postgresql.svc:8080/"
           ports:
             - containerPort: 80
       imagePullSecrets:
