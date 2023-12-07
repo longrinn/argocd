@@ -62,7 +62,7 @@ spec:
   template:
     spec:
       containers:
-        - image: nexus.tool.mddinternship.com/repository/parking-lot:afa10897ecc8c289f5db635c53142661db3b45be
+        - image: nexus.tool.mddinternship.com/repository/parking-lot:962adbe53e1055d64f30806ad0020162697d1b13
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -82,7 +82,7 @@ spec:
     spec:
       containers:
         - name: parking-lot
-          image: nexus.tool.mddinternship.com/repository/parking-lot:afa10897ecc8c289f5db635c53142661db3b45be
+          image: nexus.tool.mddinternship.com/repository/parking-lot:962adbe53e1055d64f30806ad0020162697d1b13
           imagePullPolicy: Always
           envFrom:
             - secretRef:
