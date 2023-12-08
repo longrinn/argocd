@@ -101,11 +101,6 @@ kind: Secret
 metadata:
   name: tls-db-credentials
 type: Opaque
-spec:
-  template:
-    spec:
-      containers:
-        - image: nexus.tool.mddinternship.com/repository/parking-lot:4c0c7ef09a0b3b43b549921d200ea15507ffc733
 ---
 apiVersion: batch/v1
 kind: Job
