@@ -65,7 +65,7 @@ spec:
     spec:
       containers:
         - name: bsfrontend
-          image: nexus.tool.mddinternship.com/repository/booksharing_fe:1.0.15
+          image: nexus.tool.mddinternship.com/repository/booksharing_fe:1.0.16
           imagePullPolicy: Always
           ports:
             - containerPort: 80
