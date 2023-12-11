@@ -67,11 +67,11 @@ spec:
     spec:
       containers:
         - name: bsfrontend
-          image: nexus.tool.mddinternship.com/repository/tls-frontend:main
+          image: nexus.tool.mddinternship.com/repository/tls-frontend:0.1.0
           imagePullPolicy: Always
           env:
-          - name: API_BASE_URL
-            value: "http://postgres-postgresql.postgresql.svc:8080/"
+            - name: API_BASE_URL
+              value: "http://postgres-postgresql.postgresql.svc:8080/"
           ports:
             - containerPort: 80
       imagePullSecrets:
