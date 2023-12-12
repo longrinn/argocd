@@ -9,8 +9,8 @@ metadata:
     cert-manager.io/cluster-issuer: cert-manager-global
     external-dns.alpha.kubernetes.io/hostname: parkinglot-be.app.mddinternship.com
   labels:
-    app: test
-  name: test-ingres
+    app: parking-lot
+  name: pl-ingress
 spec:
   rules:
     - host: parkinglot-be.app.mddinternship.com
@@ -18,7 +18,7 @@ spec:
         paths:
           - backend:
               service:
-                name: test-service
+                name: pl-svc
                 port:
                   number: 5000
             path: /
@@ -31,11 +31,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: test-service
+  name: pl-svc
 spec:
   selector:
-    # app.kubernetes.io/name: test
-    app: test
+    app: parking-lot
   ports:
     - protocol: TCP
       port: 5000
@@ -58,27 +57,22 @@ kind: Secret
 metadata:
   name: parking-lot-secret
 type: Opaque
-spec:
-  template:
-    spec:
-      containers:
-        - image: nexus.tool.mddinternship.com/repository/parking-lot:bae350e985c189968094929ed297acb0625e3c94
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: test
+  name: parking-lot
   labels:
-    app: test
+    app: parking-lot
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: test
+      app: parking-lot
   template:
     metadata:
       labels:
-        app: test
+        app: parking-lot
     spec:
       containers:
         - name: parking-lot
