@@ -81,7 +81,7 @@ spec:
     spec:
       containers:
         - name: parking-lot
-          image: nexus.tool.mddinternship.com/repository/parking-lot:bcbeb26ab7e5d3e1801618f835a4e678201708ac
+          image: nexus.tool.mddinternship.com/repository/parking-lot:210cad96b63ca7d0d2456fed6cceda470cbd22dc
           imagePullPolicy: Always
           envFrom:
             - secretRef:
