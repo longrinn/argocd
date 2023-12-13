@@ -107,7 +107,7 @@ kind: Job
 metadata:
   name: database-migration-job
 spec:
-  ttlSecondsAfterFinished: 100
+  #ttlSecondsAfterFinished: 100
   template:
     spec:
       containers:
