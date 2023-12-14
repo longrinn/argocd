@@ -57,11 +57,6 @@ kind: Secret
 metadata:
   name: parking-lot-secret
 type: Opaque
-spec:
-  template:
-    spec:
-      containers:
-        - image: nexus.tool.mddinternship.com/repository/parking-lot:bae350e985c189968094929ed297acb0625e3c94
 ---
 apiVersion: apps/v1
 kind: Deployment
