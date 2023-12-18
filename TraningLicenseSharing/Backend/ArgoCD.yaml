@@ -105,7 +105,10 @@ type: Opaque
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: database-migration-job
+  generateName: database-migration-job-
+annotations:
+  argocd.argoproj.io/hook: PreSync
+  argocd.argoproj.io/hook-delete-policy: HookSucceeded
 spec:
   #ttlSecondsAfterFinished: 100
   template:
